@@ -273,3 +273,7 @@ body {
   width: 100%;
   display: none;
 }
+
+.filtered {
+  display: none !important;
+}

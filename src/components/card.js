@@ -1,4 +1,5 @@
 import axios from "axios";
+import stretch from '../stretch';
 
 const Card = (article) => {
   // TASK 5
@@ -64,11 +65,17 @@ const cardAppender = (selector) => {
       for (const topic in articlesObj) {
         articlesObj[topic].forEach(article => {
           const articleCard = Card(article);
+          // add class for use in sorting with topic buttons
+          articleCard.classList.add(topic);
           target.appendChild(articleCard);
         })
       }
     })
-    .catch(err => console.warn(err));
+    .catch(err => console.warn(err))
+    .finally(() => {
+      // add listeners for sorting after all elements have been successfully rendered to the DOM
+      stretch();
+    })
 }
 
 export { Card, cardAppender }
