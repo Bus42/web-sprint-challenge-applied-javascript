@@ -16,8 +16,10 @@ const Tabs = (topics) => {
   //
 
   const topicsWrapper = document.createElement('div');
+  topicsWrapper.classList.add("topics");
   for (let i = 0; i < topics.length; i++) {
     const topicDiv = document.createElement('div');
+    topicDiv.classList.add("tab")
     topicDiv.textContent = topics[i];
     topicsWrapper.appendChild(topicDiv);
   }
