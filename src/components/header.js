@@ -1,3 +1,5 @@
+import { wrap } from "regenerator-runtime";
+
 const Header = (title, date, temp) => {
   // TASK 1
   // ---------------------
@@ -11,6 +13,17 @@ const Header = (title, date, temp) => {
   //    <span class="temp">{ temp }</span>
   //  </div>
   //
+  const headerDiv = document.createElement('div');
+  const headerDate = document.createElement('span');
+  headerDate.textContent = date;
+  const headerTitle = document.createElement('h1');
+  headerTitle.textContent = title;
+  const headerTemp = document.createElement('span');
+  headerTemp.textContent = temp;
+  headerDiv.appendChild(headerDate);
+  headerDiv.appendChild(headerTitle);
+  headerDiv.appendChild(headerTemp);
+  return headerDiv
 }
 
 const headerAppender = (selector) => {
