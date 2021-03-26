@@ -84,3 +84,5 @@ Be prepared to demonstrate your understanding of this week's concepts by answeri
     So we can do stuff. There are many more methods availabe to us when working with an array that with a NodeList
 5. What is a component?
     An independent and reusable piece of code.
+
+    *testing codegrade*
