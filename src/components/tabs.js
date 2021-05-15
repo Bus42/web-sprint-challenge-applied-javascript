@@ -1,5 +1,5 @@
 import { topics } from "./endpoints";
-const axios = require('axios');
+const axios = require("axios");
 const Tabs = (topics) => {
   // TASK 3
   // ---------------------
@@ -16,15 +16,29 @@ const Tabs = (topics) => {
   // </div>
   //
 
-  const topicsWrapper = document.createElement('div');
+  const topicsWrapper = document.createElement("div");
   topicsWrapper.classList.add("topics");
   for (let i = 0; i < topics.length; i++) {
-    const topicDiv = document.createElement('div');
-    topicDiv.classList.add("tab")
+    const topicDiv = document.createElement("div");
+    //stretch
+    topicDiv.onclick = hideCards;
+    topicDiv.classList.add("tab");
     topicDiv.textContent = topics[i];
     topicsWrapper.appendChild(topicDiv);
   }
-  return topicsWrapper
+  return topicsWrapper;
+};
+
+function hideCards(filter) {
+  const cards = document.querySelectorAll(".card");
+  for (let i in cards) {
+    if (typeof filter === "string") {
+      const filterValue = filter.split(".")[0];
+      if (!cards[i].classList.contains(filterValue)) {
+        cards[i].classList.add("filtered");
+      }
+    }
+  }
 }
 
 const tabsAppender = (selector) => {
@@ -36,10 +50,11 @@ const tabsAppender = (selector) => {
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
   const target = document.querySelector(`${selector}`);
-  axios.get(topics)
-    .then(res => Tabs(res.data.topics))
-    .then(topicsWrapper => target.appendChild(topicsWrapper))
-    .catch(err => console.alert(err));
-}
+  axios
+    .get(topics)
+    .then((res) => Tabs(res.data.topics))
+    .then((topicsWrapper) => target.appendChild(topicsWrapper))
+    .catch((err) => console.alert(err));
+};
 
-export { Tabs, tabsAppender }
+export { Tabs, tabsAppender };
