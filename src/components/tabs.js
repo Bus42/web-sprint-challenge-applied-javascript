@@ -1,3 +1,4 @@
+import { topics } from "./endpoints";
 const axios = require('axios');
 const Tabs = (topics) => {
   // TASK 3
@@ -35,7 +36,7 @@ const tabsAppender = (selector) => {
   // Append the tabs to the element in the DOM that matches the selector passed to the function.
   //
   const target = document.querySelector(`${selector}`);
-  axios.get('https://lambda-times-api.herokuapp.com/topics')
+  axios.get(topics)
     .then(res => Tabs(res.data.topics))
     .then(topicsWrapper => target.appendChild(topicsWrapper))
     .catch(err => console.alert(err));

@@ -1,5 +1,4 @@
-import { wrap } from "regenerator-runtime";
-const axios = require('axios');
+const axios = require("axios");
 
 const Header = (title, date, temp) => {
   // TASK 1
@@ -14,21 +13,21 @@ const Header = (title, date, temp) => {
   //    <span class="temp">{ temp }</span>
   //  </div>
   //
-  const headerDiv = document.createElement('div');
+  const headerDiv = document.createElement("div");
   headerDiv.classList.add("header");
-  const headerDate = document.createElement('span');
+  const headerDate = document.createElement("span");
   headerDate.classList.add("date");
   headerDate.textContent = date;
-  const headerTitle = document.createElement('h1');
+  const headerTitle = document.createElement("h1");
   headerTitle.textContent = title;
-  const headerTemp = document.createElement('span');
+  const headerTemp = document.createElement("span");
   headerTemp.classList.add("temp");
   headerTemp.textContent = temp;
   headerDiv.appendChild(headerDate);
   headerDiv.appendChild(headerTitle);
   headerDiv.appendChild(headerTemp);
-  return headerDiv
-}
+  return headerDiv;
+};
 
 const headerAppender = (selector) => {
   // TASK 2
@@ -38,16 +37,21 @@ const headerAppender = (selector) => {
   // It should append the header to the element in the DOM that matches the given selector.
   //
   const target = document.querySelector(`${selector}`);
-  axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=39.2783&lon=-103.5002&units=imperial&exclude=minutely,hourly,daily,alerts&appid=b2a13a7aee736f88f846aac0a54ef989")
-    .then(res => {
-      const ttData = {}
-      ttData.temp = res.data.current.temp
+  axios
+    .get(
+      "https://api.openweathermap.org/data/2.5/onecall?lat=39.2783&lon=-103.5002&units=imperial&exclude=minutely,hourly,daily,alerts&appid=b2a13a7aee736f88f846aac0a54ef989"
+    )
+    .then((res) => {
+      const ttData = {};
+      ttData.temp = res.data.current.temp;
       ttData.time = new Date().toString();
       return ttData;
     })
     .then(({ time, temp }) => {
-      target.appendChild(Header("Genoa Conditions", time, `${temp.toFixed(0)}\u00b0`))
-    })
-}
+      target.appendChild(
+        Header("Genoa Conditions", time, `${temp.toFixed(0)}\u00b0`)
+      );
+    });
+};
 
-export { Header, headerAppender }
+export { Header, headerAppender };
