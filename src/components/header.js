@@ -37,13 +37,11 @@ const headerAppender = (selector) => {
   // It should append the header to the element in the DOM that matches the given selector.
   //
   const target = document.querySelector(`${selector}`);
-  axios
-    .get(
-      "https://api.openweathermap.org/data/2.5/onecall?lat=39.2783&lon=-103.5002&units=imperial&exclude=minutely,hourly,daily,alerts&appid=b2a13a7aee736f88f846aac0a54ef989"
-    )
-    .then((res) => {
-      const ttData = {};
-      ttData.temp = res.data.current.temp;
+  // make API call to OpenWeatherMaps get current conditions in my home town (actually had this API key "laying" around from a former project)
+  axios.get("https://api.openweathermap.org/data/2.5/onecall?lat=39.2783&lon=-103.5002&units=imperial&exclude=minutely,hourly,daily,alerts&appid=b2a13a7aee736f88f846aac0a54ef989")
+    .then(res => {
+      const ttData = {}
+      ttData.temp = res.data.current.temp
       ttData.time = new Date().toString();
       return ttData;
     })
